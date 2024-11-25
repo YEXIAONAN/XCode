@@ -1,0 +1,749 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5 { white-space: pre-wrap; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  #write > p:nth-child(1) { margin-top: 0px; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+  figure { overflow-x: visible; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+mjx-container { break-inside: avoid; }
+.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
+.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
+.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
+.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
+.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left: 0.25em solid rgb(0, 0, 0); }
+.md-alert-text-note { color: rgb(9, 105, 218); }
+.md-alert-text-important { color: rgb(130, 80, 223); }
+.md-alert-text-warning { color: rgb(154, 103, 0); }
+.md-alert-text-tip { color: rgb(31, 136, 61); }
+.md-alert-text-caution { color: rgb(207, 34, 46); }
+.md-alert-text { font-size: 0.9rem; font-weight: 700; }
+.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
+.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
+
+
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url('file:///C://Users//Karey//AppData//Roaming//Typora/themes/vue/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdu.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}@import '';
+
+:root {
+    --side-bar-bg-color: #fff;
+    --control-text-color: #777;
+    --font-sans-serif: 'Ubuntu', 'Source Sans Pro', sans-serif !important;
+    --font-monospace: 'Fira Code', 'Roboto Mono', monospace !important;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-sans-serif);
+    color: #34495e;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6rem;
+    letter-spacing: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+#write {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px 30px 100px;
+}
+
+#write p {
+    line-height: 1.6rem;
+    word-spacing: .05rem;
+}
+
+#write ol li {
+    padding-left: 0.5rem;
+}
+
+#write > ul:first-child,
+#write > ol:first-child {
+    margin-top: 30px;
+}
+
+body > *:first-child {
+    margin-top: 0 !important;
+}
+
+body > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+a {
+    color: #42b983;
+    font-weight: 600;
+    padding: 0 2px;
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+
+h1 tt,
+h1 code {
+    font-size: inherit !important;
+}
+
+h2 tt,
+h2 code {
+    font-size: inherit !important;
+}
+
+h3 tt,
+h3 code {
+    font-size: inherit !important;
+}
+
+h4 tt,
+h4 code {
+    font-size: inherit !important;
+}
+
+h5 tt,
+h5 code {
+    font-size: inherit !important;
+}
+
+h6 tt,
+h6 code {
+    font-size: inherit !important;
+}
+
+h2 a,
+h3 a {
+    color: #34495e;
+}
+
+h1 {
+    padding-bottom: .4rem;
+    font-size: 2.2rem;
+    line-height: 1.3;
+}
+
+h2 {
+    font-size: 1.75rem;
+    line-height: 1.225;
+    margin: 35px 0 15px;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #ddd;
+}
+
+h3 {
+    font-size: 1.4rem;
+    line-height: 1.43;
+    margin: 20px 0 7px;
+}
+
+h4 {
+    font-size: 1.2rem;
+}
+
+h5 {
+    font-size: 1rem;
+}
+
+h6 {
+    font-size: 1rem;
+    color: #777;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl,
+table {
+    margin: 0.8em 0;
+}
+
+li > ol,
+li > ul {
+    margin: 0 0;
+}
+
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+body > h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h1:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h3:first-child,
+body > h4:first-child,
+body > h5:first-child,
+body > h6:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+a:first-child h1,
+a:first-child h2,
+a:first-child h3,
+a:first-child h4,
+a:first-child h5,
+a:first-child h6 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+h1 p,
+h2 p,
+h3 p,
+h4 p,
+h5 p,
+h6 p {
+    margin-top: 0;
+}
+
+li p.first {
+    display: inline-block;
+}
+
+ul,
+ol {
+    padding-left: 30px;
+}
+
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+
+blockquote {
+    border-left: 4px solid #42b983;
+    padding: 10px 15px;
+    color: #777;
+    background-color: rgba(66, 185, 131, .1);
+}
+
+table {
+    padding: 0;
+    word-break: initial;
+}
+
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+
+table tr:nth-child(2n),
+thead {
+    background-color: #fafafa;
+}
+
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+table tr td {
+    border: 1px solid #dfe2e5;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+#write strong {
+    padding: 0 1px;
+}
+
+#write em {
+    padding: 0 5px 0 2px;
+}
+
+#write table thead th {
+    background-color: #f2f2f2;
+}
+
+#write .CodeMirror-gutters {
+    border-right: none;
+}
+
+#write .md-fences {
+    border: 1px solid #F4F4F4;
+    -webkit-font-smoothing: initial;
+    margin: 0.8rem 0 !important;
+    padding: 0.3rem 0 !important;
+    line-height: 1.43rem;
+    background-color: #F8F8F8 !important;
+    border-radius: 2px;
+    font-family: var(--font-monospace);
+    font-size: 0.85rem;
+    word-wrap: normal;
+}
+
+#write .CodeMirror-wrap .CodeMirror-code pre {
+    padding-left: 12px;
+}
+
+#write code, tt {
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-family: var(--font-monospace);
+    font-size: 0.92rem;
+    color: #e96900;
+    background-color: #f8f8f8;
+}
+
+tt {
+    margin: 0 2px;
+}
+
+#write .md-footnote {
+    background-color: #f8f8f8;
+    color: #e96900;
+}
+
+/* heighlight. */
+#write mark {
+    background-color: #EBFFEB;
+    border-radius: 2px;
+    padding: 2px 4px;
+    margin: 0 2px;
+    color: #222;
+    font-weight: 500;
+}
+
+#write del {
+    padding: 1px 2px;
+}
+
+.cm-s-inner .cm-link,
+.cm-s-inner.cm-link {
+    color: #22a2c9;
+}
+
+.cm-s-inner .cm-string {
+    color: #22a2c9;
+}
+
+.md-task-list-item > input {
+    margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+    background-color: #f8f8f8;
+}
+
+.md-diagram-panel {
+    position: static !important;
+}
+
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block > .code-tooltip {
+    bottom: .375rem;
+}
+
+#write > h3.md-focus:before {
+    left: -1.5625rem;
+    top: .375rem;
+}
+
+#write > h4.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write > h5.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write > h6.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+.md-image > .md-meta {
+    border-radius: 3px;
+    font-family: var(--font-monospace);
+    padding: 2px 0 0 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: inherit;
+}
+
+.md-toc {
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#md-notification:before {
+    top: 10px;
+}
+
+/** focus mode */
+
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header,
+.context-menu,
+.megamenu-content,
+footer {
+    font-family: var(--font-sans-serif);
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state {
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+
+
+</style><title>Linux基础</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><p>&nbsp;</p><h1 id='linux-学习笔记'><strong><span>Linux 学习笔记</span></strong></h1><p>&nbsp;</p><blockquote><p><span>Linux是一个开源的操作系统 不要尝试去死记硬背一个命令 要养成习惯来使用命令</span></p><p><span>Linux里面Linux内核处理任何东西都要有一个   </span><strong><span>数字节点</span></strong></p></blockquote><p>&nbsp;</p><p>&nbsp;</p><p><span> </span><strong><span>放在前面：</span></strong></p><blockquote><p><span>Root用户可执行的命令放在：</span></p><p><span>/sbin</span></p><p><span>/usr/sbin </span></p><p><span>(bin-binary二进制文件)</span></p><p><span>所有用户可执行的命令放在：</span></p><p><span>/bin</span></p><p><span>/usr/bin</span></p></blockquote><p>&nbsp;</p><p>&nbsp;</p><h3 id='一linux命令的结构'><span>【一】</span><strong><span>Linux命令的结构：</span></strong></h3><p><span> </span></p><p><strong><span>命令(Command)+选项(Options)+参数(Argument)</span></strong></p><p><span> </span></p><p><span>命令：通常情况下指的是某个功能</span></p><p><span>选项：通常来讲是对命令的修饰，对命令功能的补充</span></p><p><span>参数：通常来讲是想要操作的对象</span></p><p><span> </span></p><p><span>参数可以省略，但是不代表他没有</span></p><p><span> </span></p><p><span>Linux语法：</span></p><p><strong><span>命令</span></strong><span>和</span><strong><span>选项</span></strong><span>之间使</span><strong><span>用空格来进行分隔</span></strong></p><p><strong><span>命令</span></strong><span>和</span><strong><span>参数</span></strong><span>之间使</span><strong><span>用空格来进行分隔</span></strong></p><p><strong><span>选项</span></strong><span>和</span><strong><span>选项</span></strong><span>之间使</span><strong><span>用空格来进行分隔</span></strong></p><p><strong><span>选项</span></strong><span>和</span><strong><span>参数</span></strong><span>之间使</span><strong><span>用空格来进行分隔</span></strong></p><p><strong><span>参数</span></strong><span>和</span><strong><span>参数</span></strong><span>之间使</span><strong><span>用空格来进行分隔</span></strong></p><p><span> </span></p><p><span>多个命令使用 “</span><strong><span>；</span></strong><span>” 进行分隔</span></p><p><span> </span></p><p><strong><span>选项</span></strong><span>和</span><strong><span>参数</span></strong><span>可以省略；但是</span><strong><span>命令不行</span></strong></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h3 id='二文件处理命令'><strong><span>【二】文件处理命令：</span></strong></h3><p><strong><span>Linux基础命令</span></strong></p><p>&nbsp;</p><p><span>（1）</span><strong><span>ls [选项] [文件或目录]</span></strong></p><ul><li><p><span>显示当前所处目录下的所有文件（隐藏文件除外）</span></p></li></ul><p><span>执行权限：所有User</span></p><p><span>-a 显示所有文件，包括隐藏文件</span></p><p><span>-l 显示文件的详细信息</span></p><p><span>-d 查看目录的属性</span></p><p>&nbsp;</p><p><span>（2）</span><strong><span>pwd [路径]</span></strong></p><ul><li><p><span>显示当前所在的工作目录</span></p></li></ul><p>&nbsp;</p><p><span>（3）</span><strong><span>cd [路径]</span></strong></p><ul><li><p><span>切换目录</span></p></li></ul><p><span>cd .. 回到上一级目录</span></p><p>&nbsp;</p><p><span>（4）</span><strong><span>touch [路径] [文件名]</span></strong></p><ul><li><p><span>创建一个 文件</span></p></li></ul><p><strong><span>[路径] 选项为可加可不加</span></strong><span>，如果不加路径，则在当前所处的目录下进行创建</span></p><p>&nbsp;</p><p><span>（5）</span><strong><span>mkdir    [目录名]</span></strong></p><ul><li><p><span>在当前所处的目录下创建一个目录</span></p></li></ul><p>&nbsp;</p><p><span>（6）</span><strong><span>cp [源文件目录/文件]  [复制到的目录/文件]</span></strong></p><ul><li><p><span>复制一个目录或者文件到指定位置</span></p></li></ul><p><span>（如果要复制的是一个目录，那么就要在选项里面加上  “-R”  ，例如 cp </span><strong><span>-R</span></strong><span> /test /root）</span></p><p>&nbsp;</p><p><span>（7）</span><strong><span>mv [源文件或目录]  [目的目录]</span></strong></p><ul><li><p><span>移动一个文件，改名</span></p></li></ul><p><span> </span></p><p><span>（8）</span><strong><span>rm    [文件或目录]</span></strong></p><ul><li><p><span>删除文件，目录</span></p></li></ul><p><span>如果需要删除</span><strong><span>目录</span></strong><span>要在选项处加上“-r”，如果单单删除文件则不需要加上“-r” </span></p><p><span>（选项加上“-f”可以</span><strong><span>强制删除</span></strong><span>，而不在询问是否删除）</span></p><p>&nbsp;</p><p><span>（9）</span><strong><span>cat [文件名]</span></strong></p><ul><li><p><span>查看文件的内容（适用于较短的文件显示，太长的显示不完全）</span></p></li></ul><p>&nbsp;</p><p><span>（10）</span><strong><span>more [文件名]</span></strong></p><ul><li><p><span>分页显示文件的内容（适用于较长的文件显示）</span></p></li></ul><p><span>（空格）或f        显示下一页</span></p><p><span>（Enter）            显示下一行</span></p><p><span>q或Q                    退出</span></p><p>&nbsp;</p><p><span>（11）</span><strong><span>head -num [文件名]</span></strong></p><ul><li><p><span>可以选择到 ”行“ 查看文件的内容 </span></p></li></ul><p><span>（不加选项默认显示前十行，如果想显示到几行，要在参数选项上加上  &#39;-num&#39;  想要显示到多少行）</span></p><p>&nbsp;</p><p><span>（12）</span><strong><span>tail -num [文件名]</span></strong></p><ul><li><p><span>查看文件的最后几行</span></p></li></ul><p>&nbsp;</p><p><span>（13）</span><strong><span>ln - s [源文件]  [目标文件]</span></strong></p><ul><li><p><span>创建链接文件</span></p></li></ul><p><span>-s：建立软链接文件（）。 （’-f‘选项可以强制添加链接，并且删除已经存在的链接）</span></p><p><span>如果不加 &quot;-s&quot; 选项，则建立</span><strong><span>硬链接</span></strong><span>文件；</span></p><p><span>（软连接类似为Windows的</span><strong><span>快捷方式</span></strong><span>）</span></p><p><span>（硬连接类似为Windows的</span><strong><span>拷贝</span></strong><span>，它是创建了一个</span><strong><span>与源文件大小一样的文件</span></strong><span>；他与拷贝不一样的是他会</span><strong><span>同步更新；拷贝过的文件会重新更替，时间值，如果不希望改变时间的话需要再选项处加上“-p”</span></strong><span>）</span></p><p><strong><span>硬链接不能跨越文件系统；软链接则没有这个限制</span></strong></p><p>&nbsp;</p><h3 id='三权限管理命令'><span>【三】权限管理命令：</span></h3><p>&nbsp;</p><p><span>（1） </span><strong><span>chmod   [{ugo}{+-=}{rwx}]   [文件或目录]</span></strong></p><p><span>                           </span><strong><span>[mode=421]    [文件或目录]</span></strong></p><p><span>改变文件或目录权限</span></p><p><span>u-所有者</span></p><p><span>g-所属组</span></p><p><span>o-其他人</span></p><p>&nbsp;</p><p><span>r：read（”</span><strong><span>读</span></strong><span>“权限）【4】</span></p><p><span>w：write（“</span><strong><span>写</span></strong><span>”权限）【2】</span></p><p><span>x：execute（“</span><strong><span>可执行</span></strong><span>”权限）【1】</span></p><p>&nbsp;</p><p>&nbsp;</p><p><span>（2）</span><strong><span>chown    [用户]   [文件或目录]</span></strong></p><ul><li><p><span>改变文件或目录的所有者</span></p></li></ul><p>&nbsp;</p><p>&nbsp;</p><p><span>（3）</span><strong><span>chgrp    [用户]   [文件或目录]</span></strong></p><ul><li><p><span>改变文件或目录的所属组</span></p></li></ul><p>&nbsp;</p><p>&nbsp;</p><p><span>（4）</span><strong><span>umask</span></strong><span> </span></p><ul><li><p><span>查看默认权限</span></p></li></ul><p><span>umask </span><strong><span>“-s”</span></strong><span> 选项可以以</span><strong><span>u(user；所有者)</span></strong><span>，</span><strong><span>g(group；所属组)</span></strong><span>，</span><strong><span>o(other；其他人)</span></strong><span>显示默认权限</span></p><p>&nbsp;</p><p><span>0022（掩码）</span></p><p><span>0-特殊权限位</span></p><p><span>022-用户权限位，权限掩码值</span></p><p><span>    777</span></p><p><span>  -022</span></p><p><span>-</span><span>--------</span></p><p><span>    755</span></p><p>&nbsp;</p><p>&nbsp;</p><p><span>（4）</span><strong><span>which  [命令名称]</span></strong></p><ul><li><p><span>显示系统命令所在的目录</span></p></li></ul><p>&nbsp;</p><p><span>（5）</span><strong><span>find [搜索路径] [搜索关键字]</span></strong></p><ul><li><p><span>查找文件或目录</span></p></li></ul><p><strong><span>-name 文件名查找</span></strong></p><p><strong><span>find  /etc -name [name]</span></strong></p><p><span>在目录/ect中查找文件[name]</span></p><p>&nbsp;</p><p><span>*</span><span>  匹配任意字符   [name]*</span></p><p><span>？匹配单个字符   [name]???(一个”？“代表一个字符)</span></p><p>&nbsp;</p><p><strong><span>-size 文件大小查找</span></strong></p><p><span>（查找的文件为Block数据块，一个数据块等于512字节；在查找的时候要根据数据块来写大小）</span></p><p><strong><span>100 MB</span></strong><span>=</span><strong><span>102400 KB</span></strong><span>=</span><strong><span>204800 Block</span></strong></p><p><strong><span>find  / size +204800</span></strong></p><p><span>在根目录(/)下查找大于100MB的文件</span></p><p><span>大于用 +</span></p><p><span>小于用 -</span></p><p>&nbsp;</p><p>&nbsp;</p><p><strong><span>find / -user samlee</span></strong></p><p><span>在根目录(/)下查找所有者为samlee的文件</span></p><p>&nbsp;</p><p>&nbsp;</p><p><span> </span><strong><span>-cmin 根据时间值来查找文件</span></strong></p><p><strong><span>find /etc [时间选项] [查找时间]</span></strong></p><p><strong><span>” - “为之内，” + “为超过</span></strong></p><p>&nbsp;</p><p>&nbsp;</p><p><strong><span>天（为单位）ctime,atime,mtime</span></strong></p><p><strong><span>分钟（为单位）cmin,amin,mmin</span></strong></p><p>&nbsp;</p><p>&nbsp;</p><p><span>1.连接符 </span><strong><span>-a and</span></strong><span> 逻辑与 </span><strong><span>-o or</span></strong><span> 逻辑或</span></p><p><span>2.连接符 -exec  [command] {} \;</span></p><p><span>                                                  {}find查询的结果</span></p><p><span>                                                   \转义符， 使一些符号或目录使用本身的含义</span></p><p><span>                                                   ；结果</span></p><p>&nbsp;</p><p><strong><span>c-change</span></strong><span> 改变。表示文件的属性被修改过；所有者，所属组，权限</span></p><p><strong><span>a-access</span></strong><span> 访问。表示文件被浏览过</span></p><p><strong><span>m-modify</span></strong><span> 修改。表示文件的内容被修改过；</span></p><p>&nbsp;</p><p><span>（6）</span><strong><span>locate   [搜索关键字]</span></strong></p><ul><li><p><span>寻找文件或目录（查找速度快，但是可能查找没那么完全，需要配合 </span><strong><span>updateup</span></strong><span> 更新使用）</span></p></li></ul><p>&nbsp;</p><p><span>（7）</span><strong><span>updateup</span></strong></p><ul><li><p><span>建立整个系统目录文件的数据库（配合 </span><strong><span>locate</span></strong><span> 使用更方便）</span></p></li></ul><p>&nbsp;</p><p>&nbsp;</p><p><span>（8）</span><strong><span>grep   [指定字串] [查找源文件]</span></strong></p><ul><li><p><span>在文件中搜寻字串匹配的行并输出</span></p></li></ul><p>&nbsp;</p><p>&nbsp;</p><p><span>（9）</span><strong><span>man   [Command/目录或配置文件]</span></strong></p><ul><li><p><span>获得帮助信息</span></p></li></ul><p>&nbsp;</p><p>&nbsp;</p><p><span>（10）</span><strong><span>info   [Command/任何关键字信息]</span></strong></p><ul><li><p><span>获得帮助信息</span></p></li></ul><p>&nbsp;</p><p>&nbsp;</p><p><span>（11）</span><strong><span>whatis   [Command/命令的简单用法]</span></strong></p><ul><li><p><span>获得索引的简单说明信息</span></p></li></ul><p>&nbsp;</p><p>&nbsp;</p><p><span>（12）</span><strong><span>makewhatis</span></strong></p><ul><li><p><span>建立</span><strong><span>whatis</span></strong><span>和</span><strong><span>apropos</span></strong><span>搜索使用的数据库，当使用这两个命令发生错误时，就是</span><strong><span>whatis database没有建立（配合whatis 和 apropos使用）</span></strong></p></li></ul><p>&nbsp;</p><p>&nbsp;</p><p><span>（13）</span><strong><span>help   [Command]</span></strong></p><p><strong><span>查看shell内置命令的帮助</span></strong><span> </span></p><p>&nbsp;</p><p><span> </span></p><p><span>（14）</span><strong><span>gzip    选项   [文件]</span></strong></p><ul><li><p><span>压缩文件</span></p></li></ul><p><span>1.gzip（-gz）只能压缩文件，不能压缩目录</span></p><p><span>2.不保留源文件</span></p><p>&nbsp;</p><p>&nbsp;</p><p><span>（15）</span><strong><span>gunzip   选项   [压缩文件]</span></strong></p><ul><li><p><span>解压缩   ’ </span><strong><span>.gz</span></strong><span> ‘   的压缩文件</span></p></li></ul><p>&nbsp;</p><p>&nbsp;</p><p><span>（16）</span><strong><span>tar   </span><a href='cvf'><span>选项</span></a><span>   [目录]</span></strong></p><ul><li><p><span>打包目录</span></p></li></ul><p><span>-c ：产生.tar打包文件</span></p><p><span>-v ：显示详细信息</span></p><p><span>-f ：指定压缩后的文件名</span></p><p><span>-z ：打包同时压缩</span></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h3 id='四-网络通信命令'><span>【四】 网络通信命令：</span></h3><p>&nbsp;</p><p><span>（1）</span><strong><span>write   </span><User></strong></p><ul><li><p><span>向另一个用户发送信息，以Ctrl+D作为结束</span></p></li></ul><p>&nbsp;</p><p><span>（2）</span><strong><span>wall   [Message]</span></strong></p><ul><li><p><span>向所有用户发送一条广播信息</span></p></li></ul><p>&nbsp;</p><p><span>（3）</span><strong><span>ping   [选项]   [IP地址]</span></strong></p><ul><li><p><span>测试网络连通性</span></p></li></ul><p><span>-c ｛sum｝ 加上“-c ｛ping的次数｝”选项后面加数字可以ping多少次后自动结束</span></p><p>&nbsp;</p><p><span>（4）</span><strong><span>ifconfig   [选项]（-a）   [网卡设备标识]</span></strong></p><ul><li><p><span>查看网络设置信息</span></p></li></ul><p><span>-a 显示所有网卡信息</span></p><p>&nbsp;</p><p>&nbsp;</p><h3 id='五系统命令'><span>【五】系统命令：</span></h3><p>&nbsp;</p><p><span>（1）</span><strong><span>shutdown</span></strong></p><ul><li><p><span>关机（输入法命令之后需要等待一段时间才会关机，如果需要现在关机，可以加上 “-h now ”选项</span></p></li></ul><p><span>-h now ：马上关机</span></p><p><span> </span></p><p><span>（2）</span><strong><span>reboot</span></strong></p><ul><li><p><span>重启系统</span></p></li></ul><p>&nbsp;</p><p>&nbsp;</p><h3 id='六bash-技巧'><span>【六】bash 技巧：</span></h3><p>&nbsp;</p><p><span>（1）</span><strong><Tab></strong></p><ul><li><p><span>按 “Tab” 键可以补全一个Command或者是参数，还有文件</span></p></li></ul><p>&nbsp;</p><p><span>（2）history </span></p><ul><li><p><span>允许用户浏览先前输入过的命令，并重新调用；按方向键↑，↓可以查找以前输入过的命令</span></p></li></ul><p><span>!Num : 可以选择重新输入哪一行</span></p><p>&nbsp;</p><p><strong><span>（4）alias [修改的别名；格式为( alias [Command]= ’ 别名 ‘  )，修改的别名一定要用 &#39;&#39;引号&#39;&#39; 括起来]</span></strong><span> </span></p><ul><li><p><span>查看别名信息：alias</span></p></li><li><p><span>删除别名：unalias copy</span></p></li></ul><p><span>列：</span></p><p><span>alias copy=cp</span></p><p><span>alias xrm=&#39;rm -r&#39;</span></p><p>&nbsp;</p><p><span>（5）</span><strong><span>any command [选项]</span></strong></p><p><span>输入/输出重定向</span></p><p><span>同标准 I/O 一样，Shell对于每一个进程预先定义3个文件描述字（0，1，2）.分别对应于：</span></p><p><span>0 （STDIN）标准输入；</span></p><p><span>1  （STDOUT）标准输出；</span></p><p><span>2 （STDERR）标准错误输出。</span></p><p>&nbsp;</p><p><span>选项：</span></p><p><span>’&gt;‘输出重定向；（把一个文件写入到指定文件里）</span></p><ul><li><p><span>{ls -l /tmp &gt; /tmp.msg</span></p></li><li><p><span>date &gt;&gt; /tmp.msg}</span></p></li></ul><p><span>两个&#39;&gt;&gt;&#39;可以追加内容写入到文件而不覆盖掉之前的内容</span></p><p>&nbsp;</p><p>&nbsp;</p><p><span>&#39;&lt;&#39;输入重定向；（把一个文件里面的内容以wall的形式显示出来）</span></p><ul><li><p><span>{wall &lt; /etc/motd}</span></p></li></ul><p>&nbsp;</p><p>&nbsp;</p><p><span>&#39;2&gt;&#39;错误输出重定向（如果执行Command的时候出错，可以把Error以文件的形式记录下来） </span></p><ul><li><p><span>{cp -R /usr /backup/usr.bak 2&gt; /bak.error}</span></p></li></ul><p>&nbsp;</p><p>&nbsp;</p><p><span>（6）</span><strong><span>any command 1 |  any command 2 | any command n</span></strong></p><ul><li><p><span>将一个Command的输出传递给另一个Comamnd，作为另一个Command的输入（我们将其称之为 ’管道‘ ）</span></p></li></ul><p><span>例子：</span></p><p><span>ls -l /etc | more</span></p><p><span>ls -l /etc | grep init</span></p><p><span>ls -l /etc | grep init | wc -l</span></p><p>&nbsp;</p><ul><li><p><strong><span>grep[在一个文件里面查找关键词]</span></strong></p></li></ul><p>&nbsp;</p><p><span>（7）</span><strong><span>command1 ；command2；command3</span></strong></p><ul><li><p><span>逻辑与关系</span></p></li></ul><p><span>command1 &amp;&amp; command2</span></p><p><span>      (成功)            （执行）</span></p><p><span>command1 || command2 </span></p><p><span>   （失败）         （执行）</span></p><p><span>； - 用；间隔的各命令按顺序依次执行</span></p><p><span>&amp;&amp; - 只有&amp;&amp;前面的命令被执行成功后，他后面的命令才被执行。</span></p><p><span>||  - 只有||前面的命令执行失败后，他后面的命令才会被执行</span></p><p>&nbsp;</p><p><span>（8）</span><strong><span>command1 </span><code>command2</code></strong></p><ul><li><p><span>将一个命令的输出作为另一个命令的参数</span></p></li></ul><p>&nbsp;</p><p><span>例子：</span></p><p><span>{ls -l </span><code>which touch</code><span>}</span></p><p>&nbsp;</p><h3 id='七vimvi编辑器用法'><span>【七】Vim/Vi编辑器用法：</span></h3><p><span>Vim/Vi（以下简称Vi）是一个功能强大的全屏幕文本编辑器。是linux上最常用的文本编辑器。</span></p><p><span>它的作用是 ‘</span><strong><span>建立 编辑 显示’</span></strong><span> 文本文件</span></p><p><span>没有菜单，只有命令</span></p><p>&nbsp;</p><p><span>Vi拥有三种编辑模式：</span></p><p><span>命令模式，插入模式，编辑模式</span></p><p><span>￼</span></p><p>&nbsp;</p><p>&nbsp;</p><h3 id='八linux用户管理'><span>【八】Linux用户管理：</span></h3><ul><li><p><strong><span>account : password : UID : GID : GECOS : directory : shell</span></strong></p></li></ul><p><span>           (1)                 (2)             (3)     (4)        (5)            (6)              (7)</span></p><p><span>￼</span></p><p><span>root : passwd : 14965 : 0 : 99999 : 7 :::</span></p><p><span>(1)          (2)             (3)          (4)         (5)    (6)   </span></p><p><span>用户名：加密密码：最后一次修改时间：最小时间间隔：最大时间间隔：警告时间： 账号闲置时间：失效时间：标志</span></p><p>&nbsp;</p><p><span>配置文件：</span></p><p><span>■用户信息文件：/etc/passwd</span></p><p><span>■密码文件：/etc/shadow</span></p><p><span>■用户组文件：/etc/group</span></p><p><span>■用户组密码文件：/etc/gshadow</span></p><p><span>■用户配置文件：</span></p><p><span>     □/etc/login.defs</span></p><p><span>     □/etc/default/useradd</span></p><p><span>■新用户信息文件：/etc/ske1</span></p><p><span>■登录信息：/etc/motd   /etc/issue</span></p><p>&nbsp;</p><p><span>在创建新用户时，密码是写入到/etc/passwd文件中，再转换到/etc/shadow文件中，/etc/shadow文件只有root有查看权限</span></p><p>&nbsp;</p><p><span>（</span><strong><span>1）SetUID 所有者</span></strong></p><ul><li><p><span>当一个可执行程序具有SetUID权限，用户执行这个程序时，将以这个程序所有者的身份执行（SetUID=4）</span></p></li></ul><p>&nbsp;</p><ul><li><p><span>chmod u+s /bin/file      u-s /bin/file</span></p></li></ul><p><span>                     4755                 755</span></p><p><span>                    </span></p><p>&nbsp;</p><p><strong><span>（2）SetGID 所属组</span></strong></p><ul><li><p><span>当一个可执行程序具有SetGID权限，用户执行这个程序时，将以这个程序所属组的身份执行（SetGID=2）</span></p></li></ul><p>&nbsp;</p><ul><li><p><span>chmod g+s /bin/file     g-s /bin/file</span></p></li></ul><p><span>                     2755                     </span></p><p>&nbsp;</p><p><span>如果需要同时添加这两个权限可以同时加上2755 6755</span></p><p>&nbsp;</p><p>&nbsp;</p><p><strong><span>(3)t 其他人</span></strong></p><p><span>粘着位=1</span></p><p><span>如果一个目录为777有粘着位的权限，每个用户都可以在这个目录下创建文件，但是只能删除自己创建的文件</span></p><p>&nbsp;</p><ul><li><p><span>chmod o+t /dir    o-t</span></p></li></ul><p><span>                     1777         777</span></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><span>（4）</span><strong><span>查找SetUID程序：</span></strong></p><p><span>find / -perm -4000 -o -perm -2000</span></p><p>&nbsp;</p><p><span>（5）</span><strong><span>Group 权限组</span></strong></p><p><span>groupname : grouppasswd : GID : groupuserlist</span></p><p><span>      （1）              （2）         （3）         （4）</span></p><p><span>￼</span></p><p>&nbsp;</p><p>&nbsp;</p><p><span>（6）</span><strong><span>useradd [选项] [Username]</span></strong><span> </span></p><ul><li><p><span>添加一个用户</span></p></li></ul><p><span>■u：UID</span></p><p><span>■g：缺省所属组GID</span></p><p><span>■G：指定用户所属多个组（一个用户可以属于多个用户组）</span></p><p><span>■d：宿主目录</span></p><p><span>■s：命令解释器Shell</span></p><p><span>■c：描述信息</span></p><p><span>■e：指定用户失效时间</span></p><p>&nbsp;</p><p><strong><span>（7）userdel -r [Username]</span></strong></p><ul><li><p><span>删除用户目录</span></p></li></ul><p><span> </span></p><p>&nbsp;</p><p><strong><span>（8）password / passwd [用户名]</span></strong></p><ul><li><p><span>为用户 设置/修改 密码</span></p></li></ul><p><span>用户名为Root管理员设置其他人密码时添加，默认不需要添加用户名</span></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong><span>（9）groupcommand</span></strong></p><ul><li><p><span>创建用户组</span></p></li></ul><p><span>1.添加用户组：groupadd</span></p><p><span>group -g 888 webadmin</span></p><p><span>创建用户组webadmin，其GID为888</span></p><p>&nbsp;</p><p><span>2.删除用户组：groupdel [groupname]</span></p><p><span>groupdel webadmin</span></p><p><span>删除用户组webadmin</span></p><p>&nbsp;</p><p><span>3.修改用户组信息：groupmod</span></p><p><span>groupmod -n apache webadmin </span></p><p><span>修改webadmin组名为apache</span></p><p>&nbsp;</p><p>&nbsp;</p><p><strong><span>（10）usermod</span></strong></p><ul><li><p><span>修改用户信息</span></p></li><li><p><span>usermod  -G softgroup samlee</span></p></li></ul><p><span>将用户samlee添加到softgroup用户组中</span></p><p>&nbsp;</p><ul><li><p><span>usermod -l samlee -d /home/samlee -g lampbrother liming</span></p></li></ul><p><span>将用户liming的登录名修改为samlee，加入到lampbrother用户组中，用户宿主目录修改为/home/samlee</span></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong><span>（11）gpasswd</span></strong></p><ul><li><p><span>设置密码及管理组内成员</span></p></li></ul><p><span>-a  ：添加用户到用户组</span></p><p><span>-d ：从用户组中删除用户</span></p><p><span>-A ：设置用户组管理员</span></p><p><span>-r ：删除用户组密码</span></p><p><span>-R ：禁止用户切换为该组（禁止用户添加到这个组）</span></p><p>&nbsp;</p><p>&nbsp;</p><p><strong><span>（12）newgrp  [groupname]</span></strong></p><ul><li><p><span>添加到一个用户 [组] ，事先不属于这个组</span></p></li></ul><p>&nbsp;</p><p>&nbsp;</p><p><strong><span>（13）groups [groupname]</span></strong></p><ul><li><p><span>显示 [组] 成员</span></p></li></ul><p>&nbsp;</p><p><strong><span>（14）chage [passwd]</span></strong></p><p><span>-l：查看用户密码设置</span></p><p><span>-m：密码修改最小天数</span></p><p><span>-M：密码修改最大天数</span></p><p><span>-d：密码最后修改的日期</span></p><p><span>-I：密码过期后，锁定账户的天数</span></p><p><span>-E：试着密码的过期日期，如果为0，代表密码立即过期，如果为-1，代表密码永不过期</span></p><p><span>-w：设置密码过期前，开始警告的天数</span></p><p>&nbsp;</p><h3 id='八一批量添加用户'><span>【八.一】批量添加用户：</span></h3><p><span>#</span><span>newusers (导入用户信息文件)</span></p><p><span>#</span><span>pwunconv (取消shadow password功能)</span></p><p><span>#</span><span>chpasswd (导入密码文件)</span></p><p><span>                 （用户名:文件）</span></p><p><span>#</span><span>pwconv (将密码写入shadow文件)</span></p><p><span>实例：一次批量添加10个用户</span></p><p>&nbsp;</p><h3 id='八二linux用户分为三种'><span>【八.二】Linux用户分为三种：</span></h3><p><span>*超级用户（root，UID=</span><strong><span>0</span></strong><span>）</span></p><p><span>*普通用户（UID=</span><strong><span>500-60000</span></strong><span>）</span></p><p><span>*伪用户（UID=</span><strong><span>1-499</span></strong><span>）</span></p><p>&nbsp;</p><p><span>每一个用户都至少属于一个用户组</span></p><p><span>每个用户组可以包括多个用户</span></p><p><span>同一个用户组的用户享有该组共有的权限</span></p><p>&nbsp;</p><p>&nbsp;</p><h3 id='八三伪用户'><span>【八.三】伪用户：</span></h3><p><span>1.伪用户与系统和程序服务相关</span></p><p><span>*bin,daemon,shutdown,halt等，任何Linxu系统都默认有这些伪用户</span></p><p><span>*mail,news,games,apache,ftp,mysql及sshd等，与Linux系统的进程相关</span></p><p><span>2.伪用户通常不需要</span><strong><span>或无法登录系统</span></strong></p><p><span>3.可以没有宿主目录</span></p><p>&nbsp;</p><p>&nbsp;</p><h3 id='八四用户组管理命令'><span>【八.四】用户组管理命令</span></h3><p><span> groups  :查看用户隶属于那些用户组 </span></p><p><span>newgrp   :切换用户组</span></p><p><span>grpck      :用户组配置文件检测</span></p><p><span>chgrp      :修改文件所属组</span></p><p><span>vigr          : 编辑/etc/group文件（锁定文件）</span></p><p>&nbsp;</p><p><span>■启动或停用shadow功能</span></p><p><span>#</span><span>pwconv/pwunconv</span></p><p><span>#</span><span>groconv/grpunconv</span></p><p>&nbsp;</p><p><span>■system-config-users</span></p><p><span>■authconfig    /etc/sysconfig/suthconfig</span></p><p>&nbsp;</p><p>&nbsp;</p><h3 id='八五限制su命令只能root使用'><span>【八.五】限制su命令只能root使用：</span></h3><p><span>#</span><span>groupadd sugroup</span></p><p><span>*设置一个组，在组内的成员能使用su命令</span></p><p><span>#</span><span>chmod 4550 /bin/su</span></p><p><span>*修改su命令的权限（/bin/su）</span></p><p><span>#</span><span>chgrp sugroup /bin/su</span></p><p><span>*修改su的所属组为sugroup</span></p><p><span>#</span><span>ls -l /bin/su</span></p><p><span>*查看su的权限</span></p><p>&nbsp;</p><p>&nbsp;</p><h3 id='八六用sudo代替su'><span>【八.六】用</span><strong><span>sudo</span></strong><span>代替</span><strong><span>su</span></strong><span>：</span></h3><p><span>■-在执行sudo命令时，临时成为root</span></p><p><span>■-不会泄露root口令</span></p><p><span>■-仅向用户提供有限的命令使用权</span></p><p><span>配置文件：</span><strong><span>/etc/sudoers</span></strong><span>，编辑配置文件命令(前提必须要是root)：</span><strong><span>visudo</span></strong></p><p><span>普通用户使用命令：</span><strong><span>sudo</span></strong></p><p><span>格式：</span><strong><span>用户名(组名)  主机地址=命令 （绝对路径）</span></strong></p><p><span>￼</span></p><h3 id='九linux-rpm软件包管理'><span>【九】Linux Rpm软件包管理：</span></h3><p><span>二进制软件包管理（RPM，YUM）</span></p><p><span>源代码安装</span></p><p><span>脚本安装（Shell或Java脚本）</span></p><p><span>Debian系Linux软件包管理简介</span></p><p>&nbsp;</p><p><span>挂载光盘：</span></p><p><span>#</span><span>mkdir   /mnt/cdrom</span></p><p><span>#</span><span>mount   /dev/cdrom     /mnt/cdrom</span></p><p>&nbsp;</p><p>&nbsp;</p><p><strong><span>RPM软件包的一个例子：</span></strong></p><ul><li><p><span>sudo-1.7.2p1-5.el5.i386.rpm</span></p></li></ul><p>&nbsp;</p><p><span>其中包括软件名（sudo），版本号（1.7.2p1），发行号（5.el5），和硬件平台（i386）</span></p><p>&nbsp;</p><p><span>（1）卸载</span></p><p><strong><span>#rpm</span></strong><span> </span><strong><span>-e [软件包]</span></strong></p><p><span>注意：如果替他软件包有依赖关系，卸载时会产生提示信息，可使用</span><strong><span>--nodeps</span></strong><span>强行卸载</span></p><p>&nbsp;</p><p><span>（2）安装</span></p><p><strong><span>#rpm</span></strong><span> </span><strong><span>-ivh [软件包]</span></strong></p><p>&nbsp;</p><p><span>其他安装选项：</span></p><p><strong><span>--exccludedocs</span></strong></p><p><span>（不安装软件包中的 帮助文档）</span></p><p><strong><span>--prefix [指定路径]</span></strong></p><p><span>（将软件包安装到指定的路径霞）</span></p><p><strong><span>--test</span></strong></p><p><span>（只对安装进行测试，并不实际安装）</span></p><p><span> </span></p><p>&nbsp;</p><h3 id='3查询'><span>（3）查询</span></h3><p><strong><span>#rpm</span></strong><span> </span><strong><span>-q [软件包]</span></strong></p><p><strong><span>#rpm</span></strong><span> </span><strong><span>-qa | grep [软件包]</span></strong></p><p>&nbsp;</p><p><strong><span>-a 查询所有已安装的软件包.</span></strong></p><p><strong><span>-f 查询文件所属软件包</span></strong></p><p><strong><span>-P查询软件包</span></strong></p><p><strong><span>-i 显示软件包信息</span></strong></p><p><strong><span>-1 显示软件包中的文件列表</span></strong></p><p><strong><span>-d 显示被标注力文档的文件列表</span></strong></p><p><strong><span>-c 显示被标注力配置文件的文件列表</span></strong></p><p>&nbsp;</p><p><strong><span>RPM查询案例：</span></strong></p><p><strong><span>1、查询文件隶属的软件包：rpm-qf</span></strong></p><p><strong><span>2、查询软件包信息：</span></strong></p><p><strong><span>rpm -qi（在以安装的软件包里查询）</span></strong></p><p><strong><span>rpm -gip（在未安装的软件包里查询）</span></strong></p><p><strong><span>3、查询软件包安装文件：rpm-q、rpm-glp</span></strong></p><p><strong><span>4、查询软件包帮助文档：rpm -qd</span></strong></p><p><strong><span>5、查询软件包配置文件：rpm -gc</span></strong></p><p>&nbsp;</p><p><span>（4）覆盖安装【文件覆盖】</span></p><p><strong><span>#rpm</span></strong><span> </span><strong><span>-ivh sudo-1.7.2pl-5.el5.i386.rpm</span></strong></p><p><span>   package -ivh sudo-1.7.2pl-5.el5.i386 is already install </span></p><p><span>如果需要覆盖安装软件包可以在选项处加上 </span></p><p><strong><span>--replacepkgs</span></strong><span> 选项</span></p><p>&nbsp;</p><p><span>（5）覆盖安装【文件冲突】</span></p><p><span>如果要安装的软件包中有一个文件已在安装其他软件包时安装，会出现报错信息，此时需要忽略报错信息请使用 </span><strong><span>--replacefiles</span></strong><span> 选项</span></p><p>&nbsp;</p><p><span>（6）覆盖安装【未解决依赖关系】</span></p><p><span>一个安装的软件包可能依赖于其他软件包在安装了特定的软件包之后才能安装该软件包，如果需要强制安装使用 </span><strong><span>--nodeps</span></strong><span> 选项</span></p><p>&nbsp;</p><p><span>（7）升级</span></p><p><span>#</span><span>rpm -Uvh [软件包]</span></p><p><span>升级一个软件包</span></p><p>&nbsp;</p><p><span>（8）校验</span></p><p><span>#</span><span>rpm -V [软件名称]</span></p><p>&nbsp;</p><ul><li><p><strong><span>5 文件的md5校验值</span></strong></p></li><li><p><strong><span>S文件大小</span></strong></p></li><li><p><strong><span>L链接文件</span></strong></p></li><li><p><strong><span>T文件的创建时间</span></strong></p></li><li><p><strong><span>D 设备文件</span></strong><span>    </span></p></li><li><p><strong><span>U文件的用户</span></strong></p></li><li><p><strong><span>G文件的用户组</span></strong></p></li><li><p><strong><span>M文件的权限</span></strong></p></li></ul><p>&nbsp;</p><p><span>（9）软件包文件提取</span></p><p><span>#</span><span>rpm2cpio [软件包] ｜ cpio -idv</span></p><p><span>#</span><span>rpm2cpio [软件包] ｜ cpio -idv ｛文件目录｝</span></p><p>&nbsp;</p><p>&nbsp;</p><p><strong><span>源代码安装应用举例（proftpd）：</span></strong></p><p><span>#</span><span>tar -xzvf profypd-1.3.3d.tar.gz（解压解包）</span></p><p><span>#</span><span>cd proftpd-1.3.3d</span></p><p><span>#</span><span>./configure --prefix=/us/local/proftpd（配置）</span></p><p><span>#</span><span>mnake（编译）</span></p><p><span>#</span><span>make install（安装）</span></p><p><span>软件下载地址：</span><a href='http://www.profpd.ong' target='_blank' class='url'>http://www.profpd.ong</a></p><p>&nbsp;</p><p>&nbsp;</p><p><strong><span>脚本安装应用举例（webmin、OpenOffice）：</span></strong></p><p><span>#</span><span>tar -xzvf webmin-1.530.tar.gz</span></p><p><span>#</span><span> cd webmin-1.530</span></p><p><span>#</span><span> vi README</span></p><p><span>#</span><span> /setup.sh</span></p><p><span>软件下载地址：</span><a href='http://www.webmu.com' target='_blank' class='url'>http://www.webmu.com</a></p><p>&nbsp;</p><p><strong><span>APT包管理：</span></strong></p><p><span>口 搜索软件包 apt-cache search</span></p><p><span>口 软件包信息 apt-cache show</span></p><p><span>安装</span></p><p><span>口 安装 apt-get install （reinstall、</span></p><p><span>IJSk apt-get remove (autoremove, --purge)</span></p><p><span>口 更新软件源 apt-get update</span></p><p><span>口 更新已安装包apt-get upgrade</span></p><p>&nbsp;</p><p>&nbsp;</p><h3 id='十linux-yum软件包管理'><strong><span>【十】Linux Yum软件包管理：</span></strong></h3><p><span>yum的好处：</span></p><p><span>■-自动解决软件包依赖关系</span></p><p><span>■-方便的软件包升级</span></p><p>&nbsp;</p><p><span>（一）YUM包管理：</span></p><p><span>口 安装 yum install [软件包名]</span></p><p><span>口 检测升级 yum check-update</span></p><p><span>口升级 yum update</span></p><p><span>软件包查询 yum list</span></p><p><span>口软件包信息yum info</span></p><p><span>口 卸载yum remove</span></p><p><span>口帮助 yum -help 、man yum</span></p><p>&nbsp;</p><h3 id='十一linux-网络设置'><strong><span>【十一】Linux 网络设置：</span></strong></h3><p>&nbsp;</p><p><span>￼</span></p><p>&nbsp;</p><p><span>TCP/IP 物理层：</span><strong><span>网卡</span></strong></p><p><span>OSI 物理层：</span><strong><span>网卡</span></strong></p><p><span>      数据链路层：</span><strong><span>MAC</span></strong><span> </span></p><p>&nbsp;</p><p><span>网络层：</span><strong><span>IP，ARP，ICMP</span></strong></p><p><span>传输层：</span><strong><span>TCP，UDP</span></strong></p><p>&nbsp;</p><p><span>TCP/IP 应用层：</span><strong><span>SSH，Apache</span></strong></p><p>&nbsp;</p><p><span>（Apache）OSI会话层： </span><strong><span>客户端--服务器</span></strong></p><p><span>                            表示层：</span><strong><span>加密，压缩</span></strong></p><p><span>                            应用层：</span><strong><span>服务应用</span></strong></p><p>&nbsp;</p><p>&nbsp;</p><p><span>MAC</span></p><p><span>数据链路层</span></p><p><span>00:0C:29:30:34A8</span></p><p><span>厂商标识  网卡标识</span></p><p><span>48位分六段十六进制书写</span></p><p>&nbsp;</p><p>&nbsp;</p><p><span>IP</span></p><p><span>网络层</span></p><p><span>192.168.1.1</span></p><p><span>32位分四段以十进制来书写</span></p><p>&nbsp;</p><p>&nbsp;</p><p><span>FQHN-完整的计算机名称</span></p><p><span>应用层</span></p><p><span> [ www.   yxn.       com      . ] </span></p><p><span>  主机名  二级域  顶级域 根域</span></p><p><span>￼</span></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p><strong><span>DOS 拒绝服务攻击 SYNFLOOD</span></strong></p><p>&nbsp;</p><p><span>TCP / UDP</span></p><h3 id='十二互联网计算机寻址'><strong><span>【十二】互联网计算机寻址：</span></strong></h3><p>&nbsp;</p><p><strong><span>TCP：可靠，三次握手（断点重发，定时器） 全双工/单工/半双工</span></strong></p><p><span>A                   B</span></p><p><span>-------------&gt; SYN</span></p><p><span>&lt;------------- ACK/SYN</span></p><p><span>-------------&gt; ACK</span></p><p>&nbsp;</p><p><strong><span>UDP：速度快，但是不太安全</span></strong></p><p><span>A                    B</span></p><p><span>--------------&gt; ACK/AYN</span></p><p>&nbsp;</p><p>&nbsp;</p><p><span>ARP 地址解析协议：</span></p><ul><li><p><span>查询其他人的MAC地址</span></p></li></ul><p><span>#</span><span>arp  -a  (查看所有ARP缓存表)</span></p><p><span>#</span><span>arp  -d  [IP地址] (删除一条ARP缓存表)</span></p><p><span>#</span><span>arp  -s  [IP地址] [MAC地址] (添加ARP静态记录；永久生效)</span></p><p>&nbsp;</p><p>&nbsp;</p><p><span>￼</span></p><p>&nbsp;</p><p>&nbsp;</p><p><span>RARP 反向地址解析协议：</span></p><ul><li><p><span>知道自己的MAC地址，去询问自己的IP地址</span></p></li></ul><p>&nbsp;</p><p><span>HOSTS本机域名解析：</span></p><p><span>/etc/hosts</span></p><p><span>IP地址       主机名或域名      别名     </span></p><p><span>127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</span></p><p>&nbsp;</p><p>&nbsp;</p><p><span>DNS解析：Domain Name System</span></p><p><span>BIND （域名解析软件）</span></p><p>&nbsp;</p><p><span>递归查询：</span></p><p><span>客户端 ---&gt; </span><a href='http://www.yexiaonan.com/'><span>www.yexiaonan.com</span></a></p><p><span>1，本机DNS服务器</span></p><p><span>每次查询完会进行缓存（广义缓存）</span></p><p><span>2，根域[ . ] &gt; 顶级域[ .com ] &gt; [ yexiaonan.com ]&gt; 返回DNS服务器 &gt; 客户端</span></p><p>&nbsp;</p><p><span>MAC  --&gt;  IP</span></p><p><span>           --&gt; IP</span></p><p>&nbsp;</p><p><span>IP       --&gt; MAC</span></p><p><span>          --&gt; MAC</span></p><p>&nbsp;</p><p><span>cluster （集群）</span></p><p>&nbsp;</p><p><span>FQHN --&gt; IP</span></p><p><span>            --&gt; IP</span></p><p>&nbsp;</p><p><span>IP         --&gt; FQHN</span></p><p><span>            --&gt; FGHN</span></p><p>&nbsp;</p><h3 id='十三网络配置文件'><span>【十三】网络配置文件：</span></h3><p>&nbsp;</p><p><span>/etc/sysconfig/network-scripts/ifcfg-[网卡]</span></p><p><span>文件保存IP地址和网关</span></p><p><span>/etc/sysconfig/network</span></p><p><span>文件保存本机主机名口 /etc/te.d/init.d/network 网络启动脚本</span></p><p><span>/etc/hosts</span></p><p><span>主机名数据库</span></p><p><span>/etc/services</span></p><p><span>文件网络服务信息</span></p><p><span>/etc/resolv.conf</span></p><p><span>指定DNS服务器地址</span></p><p><span>nameserver = DNS服务器IP地址 DNS服务器IP地址</span></p><p><span>（使用空格可以填写多个DNS服务器IP地址、数量必须小于或等一3个）</span></p><p>&nbsp;</p><p><span>永久修改网卡操作：</span></p><p><strong><span>/etc/sysconfig/network-scripts/ifcfg-[网卡]</span></strong></p><p><strong><span>IPADDR=IP地址</span></strong></p><p><strong><span>BROADCAST（广播地址）=255.255.255.255</span></strong></p><p><strong><span>NETMASK（子网掩码）=32位地址</span></strong></p><p><strong><span>GATEWAY（网关）=255.255.255.0</span></strong></p><p>&nbsp;</p><p><span>永久修改主机名操作：</span></p><p><span>#</span><span>vi /etc/sysconfig/network </span></p><p><span>HOSTNAME =[主机名]</span></p><p>&nbsp;</p><p><span>重启网络配置：</span></p><p><strong><span>#network</span></strong><span>   </span><strong><span>[start]/[stop]/[restart]</span></strong></p><p><span>           </span><strong><span>[启动]/[停止]/[重启]</span></strong></p><p>&nbsp;</p><p><span>扫描一台设备开启了什么端口：</span></p><p><strong><span>（需要安装 namp 软件包，光盘自带）</span></strong></p><p><strong><span>#namp</span></strong><span> </span><strong><span>IP地址</span></strong></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h3 id='十四网络管理命令'><span>【十四】网络管理命令：</span></h3><p>&nbsp;</p><p><strong><span>查看网络端口设置：ifconfig</span></strong></p><p><strong><span>检测网络连接：ethtool  [网卡名称]</span></strong></p><p><strong><span>查看ARP表信息：arp</span></strong></p><p><strong><span>探测远程主机：ping</span></strong></p><p><strong><span>操作路由表：route</span></strong></p><p><strong><span>查看路由路径：traceroute</span></strong></p><p><strong><span>监控网络状态：netstat -an</span></strong><span> </span></p><p><strong><span>（查看所有链接）</span></strong></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h3 id='十五修改hostname'><span>【十五】修改Hostname</span></h3><p><span>#</span><span>hostnamectl  set-hostname [主机名]</span></p><p><span>#</span><span>bash</span></p></div></div>
+</body>
+</html>
