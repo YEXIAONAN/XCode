@@ -7,6 +7,7 @@
 
 
 ### 我应该怎么使用它🤔
--  将源代码文件整个 `clone` 下来，解压文件后使用 Typora 打开编辑里面的 `index.md` 文件，将其修改为你想要的内容。
--  （一般只要是Markdown支持的东西，Typora都可以将其直接转换为HTML格式）
+-  将源代码文件整个 `clone` 下来，解压文件后打开XCode文件夹使用 Typora 打开编辑里面的 `index.md` 文件，将其修改为你想要的内容。
+-  （一般只要是Markdown支持的，Typora都可以将其直接转换为HTML格式）
 
+![image](https://github.com/user-attachments/assets/4cbb7358-c6a5-48a1-a64e-5ff7322f6525)
